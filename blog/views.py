@@ -1,4 +1,4 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Post
 # Create your views here.
@@ -12,6 +12,7 @@ class PostList(ListView):
     # django.views.generic으로 부르는 ListView는
     # 모델명_list.html을 기본 파일명으로 삼기 때문이다.
     # ListView의 ordering = -pk는 포스트 목록 페이지의 포스트를 역순으로 정렬해줌
+    # 각종 view가 있다!
 
 class PostDetail(DetailView):
     model = Post
@@ -21,6 +22,7 @@ class PostDetail(DetailView):
 # 이거 작성하고 urls 가서 path('<int:pk>/', views.PostDetail.as_view()) 작성해주기
 # 블로그 경로에 있는 single_post_page.html을 post_detail.html로 고치기
 # DetailView는 모델명_detail.html을 기본 파일명으로 삼기 때문이다
+
 
 # FBV(함수 기반 views 제작)
 # def index(request):
