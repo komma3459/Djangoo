@@ -19,6 +19,8 @@ class PostDetail(DetailView):
 # class 클래스명(DetailView) : ()안의 DeetailView를 () 밖의 클래스가 상속한다는 뜻
 # model = Post여야 하는 이유 : models.py에서 불러올 클래스가 Post이기 때문.
 # 이거 작성하고 urls 가서 path('<int:pk>/', views.PostDetail.as_view()) 작성해주기
+# 블로그 경로에 있는 single_post_page.html을 post_detail.html로 고치기
+# DetailView는 모델명_detail.html을 기본 파일명으로 삼기 때문이다
 
 # FBV(함수 기반 views 제작)
 # def index(request):
