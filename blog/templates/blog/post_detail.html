@@ -11,8 +11,10 @@
         <!-- Bootstrap core Css -->
         <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
         <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}">
+
         <!-- Custom styles for this template -->
         <link rel="stylesheet" href="{% static 'blog/css/blog_post.css' %}" media="screen">
+        <script src="https://kit.fontawesome.com/a3a3425db1.js" crossorigin="anonymous"></script>
 
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -64,7 +66,25 @@
                         {% endif %}
                         <!-- Post content-->
                         <p>{{ post.content }}</p>
+
+                        {% if post.file_upload %}
+                            <button type="button" class="btn btn-outline-dark btn-sm">
+                                Download:
+                                {% if post.get_file_ext == 'csv' %}
+                                    <i class="fas fa-file-csv"></i>
+                                {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xlx' %}
+                                    <i class="fas fa-file-excel"></i>
+                                {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                                    <i class="fas fa-file-word"></i>
+                                {% elif post.get_file_ext == 'txt' %}
+                                    <i class="fas fa-file-edit"></i>
+                                {% else %}
+                                    <i class="fas fa-file"></i>
+                                {% endif %}
+                                {{ post.get_file_name }}</button>
+                        {% endif %}
                     </article>
+                    <hr/>
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
