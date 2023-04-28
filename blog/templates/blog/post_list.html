@@ -25,7 +25,7 @@
                             <a class="nav-link" href="/blog">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about_me">about_me</a>
+                            <a class="nav-link" href="/about_me">About Me</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -87,9 +87,10 @@
 
     <div class="container my-3">
         <div class="row">
-            <div class="col-md-8 col-lg-9">
+            <div class="col-md-8 col-lg-9" id="main-area">
             <!-- Blog Post -->
                 <h1>Blog</h1>
+                {% if post_list.exists %}
                 {% for p in post_list %}
                 <div class="card mb-4">
                     {% if p.head_image %}
@@ -111,6 +112,9 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% else %}
+                    <h3>아직 개시물이 없습니다</h3>
+                {% endif %}
 
                 <nav aria-label="Pagination">
                     <hr class="my-0" />
