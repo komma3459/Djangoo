@@ -12,7 +12,10 @@
     <img class="card-img-top" src="https://picsum.photos/seed/{{p.pk}}/850/350" alt="..."/>
     {% endif %}
     <div class="card-body">
-        <div class="small text-muted">{{p.created_at}}</div>
+        <div class="small text-muted">
+            Post on {{p.created_at}} by
+            <a href="#">{{ p.author | upper }}</a>
+        </div>
         <h2 class="card-title h4"><a href="{{ p.get_absolute_url }}">{{p.title}}</a></h2>
         <h5 class="text-muted">{{p.hook_text}}</h5>
         <p class="card-text">{{p.content | truncatewords:10}}</p>
