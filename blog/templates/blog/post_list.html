@@ -5,15 +5,19 @@
 <!--  blog post  -->
 {% if post_list.exists %}
 {% for p in post_list %}
-<div class="card mb-4">
+<div class="card mb-4" id="post-{{ p.pk }}">
     {% if p.head_image %}
     <img class="card-img-top" src="{{ p.head_image.url }}" alt="..." width="850" height="350"/>
     {% else %}
     <img class="card-img-top" src="https://picsum.photos/seed/{{p.pk}}/850/350" alt="..."/>
     {% endif %}
     <div class="card-body">
-        <div class="small text-muted">
-            Post on {{p.created_at}} by
+        {% if p.category %}
+            <span class="badge text-bg-success float-end">{{ p.category }}</span>
+        {% else %}
+            <span class="badge text-bg-success float-end">미분류</span>
+        {% endif %}
+        <div class="small text-muted">Post on {{p.created_at}} by
             <a href="#">{{ p.author | upper }}</a>
         </div>
         <h2 class="card-title h4"><a href="{{ p.get_absolute_url }}">{{p.title}}</a></h2>
