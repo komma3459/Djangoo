@@ -3,6 +3,23 @@ from django.views.generic import ListView, DetailView
 from .models import Post, Category
 # Create your views here.
 
+#FBV 함수 선언 제작 방식
+def category_page(request, slug):
+    category = Category.objects.get(slug=slug)
+
+    if slug == 'no_category':
+        category = '미분류'
+        post_list = Post.objects.filter(category=None)
+    else:
+        category = Category.objects.get(slug=slug)
+        post_list = Post.objects.filter(category=category)
+
+    return render(request, 'blog/post_list.html', {
+        'post_list': Post.objects.filter(category=category),
+        'categories': Category.objects.all(),
+        'no_category_post_count': Post.objects.filter(category=None).count(),
+        'category': category,
+    })
 # CBV (장고 제공 클래스 기반 views 제작)
 class PostList(ListView):
     model = Post
@@ -13,7 +30,6 @@ class PostList(ListView):
         context['categories'] = Category.objects.all()
         context['no_category_post_count'] = Post.objects.filter(category=None).count()
         return context
-
 
 class PostDetail(DetailView):
     model = Post
