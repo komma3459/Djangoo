@@ -5,8 +5,6 @@ from .models import Post, Category
 
 #FBV 함수 선언 제작 방식
 def category_page(request, slug):
-    category = Category.objects.get(slug=slug)
-
     if slug == 'no_category':
         category = '미분류'
         post_list = Post.objects.filter(category=None)
@@ -15,7 +13,7 @@ def category_page(request, slug):
         post_list = Post.objects.filter(category=category)
 
     return render(request, 'blog/post_list.html', {
-        'post_list': Post.objects.filter(category=category),
+        'post_list': post_list,
         'categories': Category.objects.all(),
         'no_category_post_count': Post.objects.filter(category=None).count(),
         'category': category,
