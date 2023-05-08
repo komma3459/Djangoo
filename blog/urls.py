@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.PostList.as_view()),
     #FBV 기반 path
     path('category/<str:slug>/', views.category_page),
+    path('tag/<str:slug>/', views.tag_page),
 
     # FBV 기반인 views.index는 주석 처리
     # path('',views.index),
