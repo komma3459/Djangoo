@@ -9,15 +9,13 @@
 <body>
 <!-- navigation bar (navbar)  -->
 {% include 'blog/navbar.html' %}
+
 <div class="container my-3">
     <div class="row">
-        <div class="col-md-8 col-lg-9" id="main-area">
+        <div class="col-12" id="main-area">
             <!-- Blog Post -->
             {% block main_area %}
             {% endblock %}
-        </div>
-        <div class="col-md-4 col-lg-3">
-            {% include 'blog/sidewidget.html' %}
         </div>
     </div>
 </div>

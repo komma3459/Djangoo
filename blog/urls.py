@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     # CBV 기반 path
     # 127.0.0.1:8000 생략 상태
+    path('create_post/', views.PostCreate.as_view()),
     path('<int:pk>/', views.PostDetail.as_view()),
     path('', views.PostList.as_view()),
     #FBV 기반 path

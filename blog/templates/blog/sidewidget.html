@@ -1,0 +1,33 @@
+<!--Search widget-->
+<div class="card mb-4">
+    <div class="card-header">Search</div>
+    <div class="card-body">
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Enter search term..."
+                   aria-label="Enter search term..." aria-describedby="button-search"/>
+            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+        </div>
+    </div>
+</div>
+<div class="card mb-4" id="categories-card">
+    <div class="card-header">Categories</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-mb-12">
+                <ul class="mb-0">
+                    {% for category in categories %}
+                    <li>
+                        <a href="{{ category.get_absolute_url }}">{{ category }} ({{ category.post_set.count }})</a>
+                    </li>
+                    {% endfor %}
+                    <li>
+                        <a href="/blog/category/no_category/">미분류 ({{ no_category_post_count }})</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="col-md-4 col-lg-3"> 부분은 base 부분에 놔둬야 화면 분할이 안정적으로 된다! -->
+<!-- sidewidget 부분은 search와 카테고리 부분을 모두 포함하니 주의합시다.  -->
