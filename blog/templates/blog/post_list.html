@@ -1,6 +1,13 @@
 {% extends 'blog/base.html' %}
 
 {% block main_area %}
+
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or user.is_staff %}
+            <a class="btn btn-primary btn-sm float-end" href="/blog/create_post/" role="button"><i class="fa-solid fa-pen"></i>&nbsp;&nbsp;&nbsp;New Post</a>
+        {% endif %}
+    {% endif %}
+
 <h1>Blog
     {% if category == '미분류' %}
         <span class="badge bg-success">미분류</span>
