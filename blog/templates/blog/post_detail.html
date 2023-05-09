@@ -25,8 +25,15 @@
                 <a href="#">{{ post.author | upper }}</a>
             </p>
             <!-- Post meta content-->
+            <hr>
+
+            {% if user.is_authenticated and user == post.author %}
+                <a class="btn btn-info float-end" href="/blog/update_post/{{ post.pk }}/" role="button" style="position: relative; top:-7px;"><i class="fa-solid fa-pen"></i> Edit Post</a>
+            {% endif %}
+
             <div class="text-muted fst-italic mb-2">Posted on {{ post.created_at }}</div>
             <!-- Post categories-->
+            <hr>
             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
         </header>
