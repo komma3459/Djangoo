@@ -44,7 +44,7 @@
         <img class="img-fluid rounded" src="https://picsum.photos/seed/{{post.id}}/1000/300" alt="random_image">
         {% endif %}
         <!-- Post content-->
-        <p>{{ post.content }}</p>
+        <p>{{ post.get_content_markdown | safe }}</p>
         <hr>
         {% if post.tags.exists %}
         <p>
