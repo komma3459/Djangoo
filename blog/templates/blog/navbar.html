@@ -1,3 +1,5 @@
+{% load socialaccount %}
+
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container container-fluid">
         <a class="navbar-brand" href="/">DjangoStudy</a>
@@ -17,28 +19,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/about_me/">About Me</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {{ user.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/accounts/logout/">Log out</a>
+                    </div>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#LoginModal">Log in</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -60,16 +58,15 @@
             <div class="modal-body text-center">
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-outline-danger btn-md mb-2 btn-block"><i
-                                class="fab fa-google"></i>Log in with Google
-                        </button>
+                        <a role="button" class="btn btn-outline-danger btn-md mb-2 btn-block"
+                           href="{% provider_login_url 'google' %}"><i class="fab fa-google"></i> Log in with Google</a>
                         <button type="button" class="btn btn-outline-success btn-md mb-3 btn-block"><i
-                                class="far fa-at"></i>Log in with E-mail
+                                class="far fa-at"></i> Log in with E-mail
                         </button>
                     </div>
                     <div class="col-md-6">
                         <button type="button" class="btn btn-outline-warning btn-md mb-2 btn-block"><i
-                                class="fal fa-envelope"></i>Sign up with E-mail
+                                class="fa-regular fa-envelope"></i></i>  Sign up with E-mail
                         </button>
                     </div>
                 </div>
